@@ -1,7 +1,7 @@
-const http = require("http");
+const http = require("https");
 
-const API_HOST = process.argv[2].split(":")[0];
-const API_PORT = process.argv[2].split(":")[1];
+const API_HOST = process.argv[2];
+const API_PREFIX = process.argv[3];
 
 function updateVehicleLocation(vehicleId, lat, lng) {
   request(
@@ -30,10 +30,10 @@ function deregisterVehicle(vehicleId) {
 
 function request(path, method, body, cb) {
   const data = JSON.stringify(body)
+  path = '/' + API_PREFIX + path;
 
   const req = http.request(
     { hostname: API_HOST,
-      port: API_PORT,
       path: path,
       method: method,
       headers: {
