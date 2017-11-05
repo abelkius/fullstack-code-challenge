@@ -1,4 +1,4 @@
-const http = require("https");
+const https = require("https");
 
 const API_HOST = process.argv[2];
 const API_PREFIX = process.argv[3];
@@ -32,7 +32,7 @@ function request(path, method, body, cb) {
   const data = JSON.stringify(body)
   path = '/' + API_PREFIX + path;
 
-  const req = http.request(
+  const req = https.request(
     { hostname: API_HOST,
       path: path,
       method: method,
